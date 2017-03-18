@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+
 const CHANGE_NAME = 'react-boilerplate/App/CHANGE_NAME';
 
 export default function appReducer(state = { name: 'Chris' }, action = {}) {
@@ -15,3 +17,15 @@ export function changeName(value) {
 		payload: value
 	};
 }
+
+const selectGlobal = (state) => state;
+
+const makeSelectAppName = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.App.name
+);
+
+export {
+  selectGlobal,
+  makeSelectAppName,
+};
